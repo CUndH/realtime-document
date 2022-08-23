@@ -11,11 +11,19 @@
 </template>
 
 <script>
-// @ is an alias to /src
+import TestApi from '@/api/test';
 
 export default {
   name: 'HomeView',
   components: {
+  },
+  mounted() {
+    TestApi.getTest({
+      a: 1,
+      b: 23,
+    }).then((res) => {
+      console.log(res);
+    });
   },
 };
 </script>
