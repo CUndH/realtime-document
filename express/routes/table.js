@@ -17,17 +17,11 @@ router.get("/list", async (req, res) => {
 });
 
 router.post("/add", async (req, res) => {
-    console.log(req.body)
-    // const { page, pageSize } = req.params;
-  
-    // const params = {
-    //   start: (page - 1) * pageSize,
-    //   end: pageSize,
-    // };
-  
-    // const result = await SelectTableData(params);
-  
-    res.send({ req:req.body });
-  });
+  console.log(req.body);
+
+  const result = await AddTableData(req.body);
+
+  res.send({ result });
+});
 
 module.exports = router;
