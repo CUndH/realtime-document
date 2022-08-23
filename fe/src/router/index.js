@@ -1,17 +1,24 @@
+import store from '@/store';
 import { createRouter, createWebHistory } from 'vue-router';
-import HomeView from '../views/HomeView.vue';
-
-const routes = [
-  {
-    path: '/',
-    name: 'home',
-    component: HomeView,
-  },
-];
+import routes from './route-config';
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.name !== 'Login') {
+    store.dispatch('getAuth').then(() => {
+      if (JSON.stringify(store.state.user) !== '{}') {
+        next({ ...to, replace: true });
+      }
+    });
+  } else if (to.name === null) {
+    next({ name: '404', query: { target: to.fullPath } });
+  } else {
+    next();
+  }
 });
 
 export default router;
