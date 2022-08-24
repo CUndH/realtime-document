@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
+const Result = require('../common/result');
 
-const { SelectTableData } = require("../controllers/table");
+const { SelectTableData, UpdateTableData } = require("../controllers/table");
 
 router.get("/list", async (req, res) => {
   const { page, pageSize } = req.query;
@@ -13,15 +14,15 @@ router.get("/list", async (req, res) => {
 
   const result = await SelectTableData(params);
 
-  res.send({ data: result });
+  res.send(Result.Ok(result));
 });
 
-router.post("/add", async (req, res) => {
+router.post("/update", async (req, res) => {
   console.log(req.body);
 
-  const result = await AddTableData(req.body);
+  const result = await UpdateTableData(req.body);
 
-  res.send({ result });
+  res.send(Result.Ok(result));
 });
 
 module.exports = router;
