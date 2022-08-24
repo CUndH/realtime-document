@@ -1,14 +1,12 @@
 import http from '@/api/config';
 
 class LoginApi {
-  static login(params) {
-    return http.get('/login', {
-      params,
-    });
+  static login(data) {
+    return http.post('/user/login', data);
   }
 
   static getUserInfo(params) {
-    return http.get('/login', {
+    return http.get('/user/info', {
       params,
     });
   }

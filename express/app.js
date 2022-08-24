@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const cookieParser = require('cookie-parser')
 // const createError = require("http-errors");
 // const morgan = require("morgan");
 // const logger = require("./common/logger");var winston = require('winston');
@@ -44,6 +45,8 @@ app.use(
     ],
   })
 );
+
+app.use(cookieParser());
 
 app.use("/app", routerConfig);
 

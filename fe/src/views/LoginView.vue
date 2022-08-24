@@ -7,7 +7,7 @@
           <el-input v-model="form.username"></el-input>
         </el-form-item>
         <el-form-item label="密码">
-          <el-input v-model="form.nickname"></el-input>
+          <el-input v-model="form.password"></el-input>
         </el-form-item>
       </el-form>
       <div class="footer">
@@ -26,7 +26,7 @@ export default {
   setup() {
     const form = reactive({
       username: null,
-      pwd: null,
+      password: null,
     });
 
     const handleLogin = () => {

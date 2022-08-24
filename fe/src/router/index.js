@@ -11,7 +11,9 @@ router.beforeEach((to, from, next) => {
   if (to.name !== 'Login') {
     store.dispatch('getAuth').then(() => {
       if (JSON.stringify(store.state.user) !== '{}') {
-        next({ ...to, replace: true });
+        next();
+      } else {
+        next({ name: 'Login' });
       }
     });
   } else if (to.name === null) {
